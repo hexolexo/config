@@ -1,0 +1,14 @@
+*
+!*/
+
+# track this file
+!.gitignore
+
+# whitelist all known in ./config/
+!alacritty/**
+#!dconf/**
+!eww/**
+!fastfetch/**
+!hypr/**
+!nvim/**
+!wofi/**

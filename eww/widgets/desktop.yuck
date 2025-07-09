@@ -1,0 +1,64 @@
+(defpoll time_remaining :interval "1s" "bash $HOME/.config/eww/scripts/time_remaining.sh")
+(defpoll date :interval "1000000s" "date '+%A, %b %d'")
+(defpoll time :interval "1s" "date '+%I : %M%p'")
+
+(defwidget clock []
+	(eventbox
+       	(box :space-evenly "false" :orientation "v" :spacing "1" :halign "end"
+           	(box :space-evenly "false" :orientation "h" :spacing "1"
+               	(label :text time :class "clock")
+			)
+		)
+	)
+)
+
+(defwidget date []
+	(eventbox
+       	(box :space-evenly "false" :orientation "v" :spacing "1" :halign "end"
+           	(box :space-evenly "false" :orientation "h"
+               	(label :text date :class "date")
+			)
+		)
+	)
+)
+
+(defwidget countdown []
+	(eventbox
+       	(box :space-evenly "false" :orientation "v" :spacing "1" :halign "end"
+           	(box :space-evenly "false" :orientation "h" :spacing "1"
+                (label :text time_remaining :class "countdown")
+                (label :text "s" :class "countdown")
+			)
+		)
+	)
+)
+
+(defpoll temp :interval "2s" "$HOME/.config/eww/scripts/temp.sh")
+(defpoll battery_and_draw :interval "5s" "$HOME/.config/eww/scripts/battery.sh")
+(defpoll network :interval "10s" "nmcli connection show --active | awk 'NR>1 {print $1 \" \"}' | head -n 1")
+(deflisten song 'bash $HOME/.config/eww/scripts/song_name.sh')
+
+(defwidget bar []
+    (eventbox
+        (box :space-evenly "false" :orientation "v" :spacing "1" :halign "end"
+            (box :space-evenly "false" :orientation "h" :spacing "1"
+                (label :text song :class "bar")
+                (label :text network :class "bar")
+                (label :text battery_and_draw :class "bar")
+                (label :text temp :class "bar")
+            )
+        )
+    )
+)
+(deflisten weather 'sleep 5 && curl wttr.in/$(cat ~/.secrets/location)?format=2')
+(defwidget weather []
+    (eventbox
+        (box :space-evenly "false" :orientation "v" :spacing "1" :halign "end"
+            (box :space-evenly "false" :orientation "h" :spacing "1" :halign "end"
+                (label :text weather :class "bar")
+            )
+        )
+    )
+)
+
+

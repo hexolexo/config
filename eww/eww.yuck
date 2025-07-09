@@ -1,0 +1,75 @@
+(include "widgets/desktop.yuck")
+(include "widgets/lock.yuck")
+
+(defwindow clock
+    :monitor 0
+    :geometry (geometry :x "23.1%"
+                        :y "45.2%"
+                        :width "1000px"
+                        :height "30px"
+                        :anchor "top right")
+    :stacking "bg"
+    :exclusive false
+    (clock)
+)
+
+(defwindow date
+	:monitor 0
+    :geometry (geometry :x "23.1%"
+                        :y "53.5%"
+                        :width "1000px"
+                        :height "30px"
+                        :anchor "top right")
+    :stacking "bg"
+    :exclusive false
+    (date)
+)
+
+(defwindow countdown
+    :monitor 0
+    :geometry (geometry :x "23.1%"
+                        :y "57%"
+                        :width "1000px"
+                        :height "24px"
+                        :anchor "top right")
+    :stacking "bg"
+    :exclusive false
+    (countdown)
+)
+
+(defwindow bar
+    :monitor 0
+    :geometry (geometry :x "23.1%"
+                        :y "45.5%"
+                        :width "1000px"
+                        :height "24px"
+                        :anchor "top right")
+    :stacking "bg"
+    :exclusive false
+    (bar)
+)
+
+(defwindow weather 
+	:monitor 0
+    :geometry (geometry :x "23.1%"
+                        :y "59.8%"
+                        :width "1000px"
+                        :height "30px"
+                        :anchor "top right")
+    :stacking "bg"
+    :exclusive false
+    (weather)
+)
+
+(defwindow pomodoro 
+    :monitor 0
+    :geometry (geometry :x "23.1%"
+                        :y "58.1%"
+                        :width "1000px"
+                        :height "100px"
+                        :anchor "top right")
+    :stacking "bg"
+    :exclusive false
+    (pomodoro)
+)
+

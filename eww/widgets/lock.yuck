@@ -1,0 +1,9 @@
+(defvar passwd "")
+
+(defwidget locked []
+    (box :class "lockscreen-container" :orientation "vertical" :space-evenly false
+        (label :text "Enter password to unlock" :class "lockscreen-label")
+        (input :password true :class "lockscreen-input" :onchange "eww update passwd={}" :onaccept "bash $HOME/.config/eww/scripts/lock.sh ${passwd}")
+        (label :text "beta" :class "lockscreen-message")
+    )
+) 

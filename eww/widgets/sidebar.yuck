@@ -1,0 +1,24 @@
+(defwidget sidebar []
+	(centerbox
+		:orientation "v"
+		:class "sidebar"
+		(box
+			:class "top"
+			:halign "start"
+			:hexpand false
+			:vexpand false
+		)
+		(box
+			:class "center"
+			:halign "start"
+			:hexpand false
+			:vexpand false
+		)
+		(box
+			:class "bottom"
+			:halign "start"
+			:hexpand false
+			:vexpand false
+			)
+	)
+)
