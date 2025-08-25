@@ -6,6 +6,7 @@
 
 # whitelist all known in ./config/
 !alacritty/**
+!fish/**
 #!dconf/**
 !eww/**
 !fastfetch/**

@@ -17,8 +17,6 @@ if [ ! -d "$DIR_PATH" ]; then
 fi
 log_message "Begun archiving"
 # Create the archive
-#tar -I pigz -cf "$ARCHIVE_NAME" "$DIR_PATH"
-#tar -n 20 -9 -cf "$ARCHIVE_NAME.tar.lz" "$DIR_PATH"
 tar -cf - --exclude="*.mp3" "$DIR_PATH" \
     | pigz -9 > "$ARCHIVE_NAME"
 

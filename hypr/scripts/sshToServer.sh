@@ -30,7 +30,7 @@ elif pgrep -x "sslocal" > /dev/null; then
     fi
 else
     # Fallback to home connection
-    if [ -n "$command" ]; then
+    if [ -n "$command" ]; then # This doesn't work due to removed port forwarding
         ssh $use_pty home "$command"
     else
         ssh home

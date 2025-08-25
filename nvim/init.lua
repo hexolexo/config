@@ -119,13 +119,6 @@ vim.o.clipboard = 'unnamedplus'
 -- Define the autocmd group
 vim.api.nvim_create_augroup('FileOpenGroup', { clear = true })
 
---vim.api.nvim_create_autocmd('BufRead', {
---  group = 'FileOpenGroup',
---  pattern = '*.hwk',
---  callback = function()
---    vim.opt.filetype = 'lua'
---  end,
---})
 vim.api.nvim_create_autocmd('BufRead', {
   group = 'FileOpenGroup',
   pattern = '*.scad',
@@ -274,34 +267,34 @@ require('lazy').setup({
   --
 
   { 'lambdalisue/suda.vim' },
-  {
-    'epwalsh/obsidian.nvim',
-    version = '*',
-    lazy = true,
-    ft = 'markdown',
-    opts = {
-      workspaces = {
-        {
-          name = 'School',
-          path = '~/Documents/Notes',
-        },
-        {
-          name = 'DND',
-          path = '~/Documents/DND',
-        },
-      },
-      notes_subdir = 'notes',
-      completion = {
-        -- Set to false to disable completion.
-        nvim_cmp = false,
-        -- Trigger completion at 2 chars.
-        min_chars = 2,
-      },
-      note_id_func = function(title)
-        return title
-      end,
-    },
-  },
+  --{
+  --'epwalsh/obsidian.nvim',
+  --version = '*',
+  --lazy = true,
+  --ft = 'markdown',
+  --opts = {
+  --workspaces = {
+  --{
+  --name = 'School',
+  --path = '~/Documents/Notes',
+  --},
+  --{
+  --name = 'DND',
+  --path = '~/Documents/DND',
+  --},
+  --},
+  --notes_subdir = 'notes',
+  --completion = {
+  ---- Set to false to disable completion.
+  --nvim_cmp = false,
+  ---- Trigger completion at 2 chars.
+  --min_chars = 2,
+  --},
+  --note_id_func = function(title)
+  --return title
+  --end,
+  --},
+  --},
 
   {
     'salkin-mada/openscad.nvim',
@@ -751,6 +744,7 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         gopls = {},
+        marksman = {},
         bashls = {},
         elmls = {},
         nil_ls = {},
