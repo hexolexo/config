@@ -267,34 +267,34 @@ require('lazy').setup({
   --
 
   { 'lambdalisue/suda.vim' },
-  --{
-  --'epwalsh/obsidian.nvim',
-  --version = '*',
-  --lazy = true,
-  --ft = 'markdown',
-  --opts = {
-  --workspaces = {
-  --{
-  --name = 'School',
-  --path = '~/Documents/Notes',
-  --},
-  --{
-  --name = 'DND',
-  --path = '~/Documents/DND',
-  --},
-  --},
-  --notes_subdir = 'notes',
-  --completion = {
-  ---- Set to false to disable completion.
-  --nvim_cmp = false,
-  ---- Trigger completion at 2 chars.
-  --min_chars = 2,
-  --},
-  --note_id_func = function(title)
-  --return title
-  --end,
-  --},
-  --},
+  {
+    'epwalsh/obsidian.nvim',
+    version = '*',
+    lazy = true,
+    ft = 'markdown',
+    opts = {
+      workspaces = {
+        {
+          name = 'School',
+          path = '~/Documents/Notes',
+        },
+        {
+          name = 'DND',
+          path = '~/Documents/DND',
+        },
+      },
+      notes_subdir = 'notes',
+      completion = {
+        -- Set to false to disable completion.
+        nvim_cmp = false,
+        -- Trigger completion at 2 chars.
+        min_chars = 2,
+      },
+      note_id_func = function(title)
+        return title
+      end,
+    },
+  },
 
   {
     'salkin-mada/openscad.nvim',
