@@ -32,7 +32,7 @@ get_current_network() {
 }
 
 CURRENT_NETWORK=$(get_current_network)
-HOME_NETWORK=$(cat ~/.secrets/home-network 2>/dev/null || echo "")
+HOME_NETWORK=$(cat /home/hexolexo/.secrets/home-network 2>/dev/null || echo "")
 
 
 # Function to test connectivity with better error handling
@@ -87,6 +87,7 @@ if pgrep -x "sslocal" >/dev/null 2>&1; then
     # Test if SOCKS proxy is actually listening
     if test_connection "127.0.0.1" "1080" 2; then
         exec nc -X 4 -x 127.0.0.1:1080 "$TARGET_HOST" "$TARGET_PORT"
+        #exec nc -X 4 -x 127.0.0.1:1080 "$TARGET_HOST" "$TARGET_PORT"
     fi
 fi
 

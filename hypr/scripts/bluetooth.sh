@@ -1,19 +1,15 @@
 #!/bin/bash
 
-device_address="$(cat ~/.secrets/bluetooth_headphones)"
+readarray -t devices < ~/.secrets/bluetooth_headphones
+
+#device_address="$(cat ~/.secrets/bluetooth_headphones)"
 notification_Length=3000
 
-connectToDevice() {
-    hyprctl notify -1 "$notification_Length" "rgb(74c7ec)" "Attempting to Connect"&
-    if 	bluetoothctl "connect" "$device_address"; then
-        hyprctl notify -1 "$notification_Length" "rgb(74c7ec)" "Connection Successful"&
-        pamixer -u
-        pgrep -x mpv || mpv --loop-playlist --idle --input-ipc-server=/tmp/mpvsocket
-    else
-        hyprctl notify -1 "$notification_Length" "rgb(74c7ec)" "Connection Failed"&
-        pamixer -m
-    fi
 
+connectToDevice() {
+    hyprctl notify -1 "$notification_Length" "rgb(74c7ec)" "Connection Successful"&
+    pamixer -u
+    pgrep -x mpv || mpv --loop-playlist --idle --input-ipc-server=/tmp/mpvsocket --volume=70
 }
 
 disconnectFromDevice() {
@@ -28,13 +24,25 @@ disconnectFromDevice() {
     fi
 }
 
+
+
 if ! systemctl is-active bluetooth; then
     sudo /sbin/systemctl start bluetooth.service
     sleep 2
 fi
 
-if bluetoothctl info "$device_address" | grep -q "Connected: yes"; then
-    disconnectFromDevice
-else
-    connectToDevice
-fi
+
+for device_address in "${devices[@]}"; do
+    if bluetoothctl info "$device_address" 2>/dev/null | grep -q "Connected: yes"; then
+        disconnectFromDevice
+        exit
+    fi
+done
+
+for device_address in "${devices[@]}"; do
+    hyprctl notify -1 "$notification_Length" "rgb(74c7ec)" "Attempting to Connect"&
+    if timeout 3 bluetoothctl connect "$device_address" &>/dev/null; then
+        connectToDevice
+        exit
+    fi
+done

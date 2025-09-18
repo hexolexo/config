@@ -34,4 +34,8 @@ if status is-interactive
             end
         end
     end
+        if not set -q SSH_AUTH_SOCK; or not pgrep -x ssh-agent > /dev/null
+        eval (ssh-agent -c)
+        #ssh-add ~/.ssh/id_rsa
+    end
 end
