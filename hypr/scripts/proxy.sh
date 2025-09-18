@@ -12,8 +12,9 @@ if [ -z "$TARGET_HOST" ] || [ -z "$TARGET_PORT" ]; then
     exit 1
 fi
 
-wifiname=$(nmcli connection show --active | awk 'NR>1 {print $1}' | head -n 1)
-if [ "$wifiname" == "$(cat ~/.secrets/home-network)" ]; then # If local network
+networkName=$(nmcli connection show --active | awk 'NR>1 {print $1}' | head -n 1)
+homeNetworkName=$(cat ~/.secrets/home-network)
+if [ "$networkName" == "$homeNetworkName" ]; then
     exec nc "$TARGET_HOST" "$TARGET_PORT"
 fi
 
